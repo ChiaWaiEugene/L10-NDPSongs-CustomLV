@@ -44,13 +44,13 @@ public class CustomAdapter extends ArrayAdapter {
 
         tvTitle.setText(currItem.getTitle());
         tvSinger.setText(currItem.getSingers());
-        tvYear.setText(currItem.getYearReleased());
-        tvStars.setText(currItem.getStars());
+        tvYear.setText(String.valueOf(currItem.getYearReleased()));
+        tvStars.setText(String.valueOf(currItem.getStars(currItem.getStars())));
 
 
         tvTitle.setTextColor(Color.BLUE);
         tvTitle.setTextSize(20f);
-        //tvSinger.setTextColor(Color.TEAL);
+        tvSinger.setTextColor(Color.rgb(117,255,255));
         tvYear.setTextColor(Color.GRAY);
         tvStars.setTextColor(Color.RED);
         //if (currItem.getYearReleased() == 2021) {

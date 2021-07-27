@@ -16,10 +16,11 @@ public class SecondActivity extends AppCompatActivity {
 
 	ListView lv;
     ArrayList<Song> songList;
-	ArrayAdapter adapter;
+	//ArrayAdapter adapter;
 	String moduleCode;
 	int requestCode = 9;
     Button btn5Stars;
+    CustomAdapter ca;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +36,9 @@ public class SecondActivity extends AppCompatActivity {
         songList = dbh.getAllSongs();
         dbh.close();
 
-		adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, songList);
-		lv.setAdapter(adapter);
+		//adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, songList);
+        ca = new CustomAdapter(this, R.layout.row, songList);
+		lv.setAdapter(ca);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -53,7 +55,7 @@ public class SecondActivity extends AppCompatActivity {
                 DBHelper dbh = new DBHelper(SecondActivity.this);
                 songList.clear();
                 songList.addAll(dbh.getAllSongsByStars(5));
-                adapter.notifyDataSetChanged();
+                ca.notifyDataSetChanged();
             }
         });
     }
@@ -66,7 +68,7 @@ public class SecondActivity extends AppCompatActivity {
             songList.clear();
             songList.addAll(dbh.getAllSongs());
             dbh.close();
-            adapter.notifyDataSetChanged();
+            ca.notifyDataSetChanged();
 		}
 		super.onActivityResult(requestCode, resultCode, data);
 	}
